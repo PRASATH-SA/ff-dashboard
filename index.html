@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Favoflex Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    :root {
+      --primary: #FFA500;
+      --secondary: #367588;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,16 +20,14 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #667eea, #764ba2);
-      background-size: cover;
-      min-height: 100vh;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      background-attachment: fixed;
       color: #fff;
     }
 
     .navbar {
       backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: var(--glass-bg);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -35,6 +39,7 @@
 
     .navbar strong {
       font-size: 1.2rem;
+      color: var(--primary);
     }
 
     #menuToggle {
@@ -44,14 +49,14 @@
       left: 1rem;
       z-index: 200;
       background: #fff;
-      color: #333;
+      color: var(--secondary);
       padding: 8px;
       border: none;
       border-radius: 5px;
     }
 
     .sidebar {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--glass-bg);
       backdrop-filter: blur(10px);
       position: fixed;
       top: 60px;
@@ -74,7 +79,7 @@
     }
 
     .sidebar a:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 165, 0, 0.2); /* Primary hover */
     }
 
     .main {
@@ -89,21 +94,23 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.15);
+      background: var(--glass-bg);
       backdrop-filter: blur(12px);
       padding: 1rem;
       border-radius: 12px;
-      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       text-align: center;
+      border-left: 4px solid var(--primary);
     }
 
     .card h2 {
       margin-bottom: 0.5rem;
+      color: var(--primary);
     }
 
     .section {
       margin-top: 2rem;
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--glass-bg);
       backdrop-filter: blur(10px);
       padding: 1rem;
       border-radius: 12px;
@@ -203,12 +210,14 @@
   </div>
 
   <script>
+    // Sidebar toggle for mobile
     const menuBtn = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
     menuBtn.addEventListener('click', () => {
       sidebar.classList.toggle('active');
     });
 
+    // Chart.js configuration
     const ctx = document.getElementById('salesChart').getContext('2d');
     new Chart(ctx, {
       type: 'line',
@@ -217,9 +226,9 @@
         datasets: [{
           label: 'Monthly Sales',
           data: [1200, 1900, 3000, 2500, 3200, 4000],
-          borderColor: '#fff',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          tension: 0.3,
+          borderColor: '#FFA500',
+          backgroundColor: 'rgba(255,165,0,0.1)',
+          tension: 0.4,
           fill: true
         }]
       },
